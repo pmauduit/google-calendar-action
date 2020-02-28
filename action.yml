@@ -1,0 +1,45 @@
+# action.yml
+name: 'Google Calendar Publisher'
+description: 'Publish a google calendar event'
+inputs:
+  OAUTH_CLIENT_ID:
+    description: 'The OAUTH client identifier'
+    required: true
+
+  OAUTH_CLIENT_SECRET:
+    description: 'The OAUTH client secret'
+    required: true
+
+  OAUTH_ACCESS_TOKEN:
+    description: 'The OAUTH access token'
+    required: true
+
+  OAUTH_REFRESH_TOKEN:
+    description: 'The OAUTH refresh token'
+    required: true
+
+  GCAL_ID:
+    description: 'the google calendar identifier'
+    required: true
+
+  GCAL_EVENT_SUMMARY:
+    description: 'the calendar event summary / label'
+    required: true
+
+
+  GCAL_EVENT_DESCRIPTION:
+    description: 'the calendar description'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.OAUTH_CLIENT_ID }}
+    - ${{ inputs.OAUTH_CLIENT_SECRET }}
+    - ${{ inputs.OAUTH_ACCESS_TOKEN }}
+    - ${{ inputs.OAUTH_REFRESH_TOKEN }}
+    - ${{ inputs.GCAL_ID }}
+    - ${{ inputs.GCAL_EVENT_SUMMARY }}
+    - ${{ inputs.GCAL_EVENT_DESCRIPTION }}
+

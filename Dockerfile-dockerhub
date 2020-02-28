@@ -1,0 +1,15 @@
+FROM groovy:3.0.1
+
+USER root
+
+COPY entrypoint.sh /entrypoint.sh
+COPY publish.groovy /publish.groovy
+RUN touch /gcal.properties
+
+
+RUN groovy -Dgrape.root=/grapes /publish.groovy
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ""
+
